@@ -1,84 +1,111 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import '../RegisterPage/Register.css';
+import '../Utils/BrowserHistory';
+import BrowerHistory from '../Utils/BrowserHistory';
+import Navbar from '../Navbar/Navbar';
+import FooterPage from '../Footer/Footer';
 
-import { userActions } from '../_actions';
-
-class LoginPage extends React.Component {
-    constructor(props) {
-        super(props);
-
-        // reset login status
-        this.props.logout();
-
+class LoginPage extends Component {
+    constructor() {
+        super();
         this.state = {
-            username: '',
-            password: '',
-            submitted: false
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(e) {
-        const { name, value } = e.target;
-        this.setState({ [name]: value });
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-
-        this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login(username, password);
+          fields: {},
+          errors: {}
         }
-    }
-
+  
+        this.handleChange = this.handleChange.bind(this);
+        this.submituserRegistrationForm = this.submituserRegistrationForm.bind(this);
+  
+      };
+  
+      handleChange(e) {
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+        this.setState({
+          fields
+        });
+  
+      }
+  
+      submituserRegistrationForm(e) {
+        e.preventDefault();
+        if (this.validateForm()) {
+            let fields = {};
+            fields["username"] = "";
+            fields["password"] = "";
+            this.setState({fields:fields});
+            alert("Form submitted");
+        }
+  
+      }
+  
+      validateForm() {
+  
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+  
+        if (!fields["username"]) {
+          formIsValid = false;
+          errors["username"] = "*Please enter your username.";
+        }
+  
+        if (typeof fields["username"] !== "undefined") {
+          if (!fields["username"].match(/^[a-zA-Z ]*$/)) {
+            formIsValid = false;
+            errors["username"] = "*Please enter alphabet characters only.";
+          }
+        }
+  
+        if (!fields["password"]) {
+          formIsValid = false;
+          errors["password"] = "*Please enter your password.";
+        }
+  
+        if (typeof fields["password"] !== "undefined") {
+          if (!fields["password"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+            formIsValid = false;
+            errors["password"] = "*Please enter secure and strong password.";
+          }
+        }
+  
+        this.setState({
+          errors: errors
+        });
+        return formIsValid;
+  
+  
+      }
+  
+  onHandleClick(){
+    BrowerHistory.push('/RegisterPage');
+  }
+  
     render() {
-        const { loggingIn } = this.props;
-        const { username, password, submitted } = this.state;
-        return (
-            <div className="col-md-6 col-md-offset-3">
-                <h2>Login</h2>
-                <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
-                        <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control" name="username" value={username} onChange={this.handleChange} />
-                        {submitted && !username &&
-                            <div className="help-block">Username is required</div>
-                        }
-                    </div>
-                    <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-                        {submitted && !password &&
-                            <div className="help-block">Password is required</div>
-                        }
-                    </div>
-                    <div className="form-group">
-                        <button className="btn btn-primary">Login</button>
-                        {loggingIn &&
-                            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-                        }
-                        <Link to="/register" className="btn btn-link">Register</Link>
-                    </div>
-                </form>
-            </div>
+      return (
+      <div id="main-registration-container">
+          <Navbar/>
+          
+       <div id="register">
+          <h3>Login page</h3>
+          <form method="post"  name="userRegistrationForm"  onSubmit= {this.submituserRegistrationForm} >
+          <label>Name</label>
+          <input type="text" name="username" value={this.state.fields.username} onChange={this.handleChange} />
+          <div className="errorMsg">{this.state.errors.username}</div>
+          <label>Password</label>
+          <input type="password" name="password" value={this.state.fields.password} onChange={this.handleChange} />
+          <div className="errorMsg">{this.state.errors.password}</div>
+          <input type="submit" className="button"  value="Login"/><br></br>
+          <input type="submit" onClick={this.onHandleClick} className="button"  value="Register"/>
+          </form>
+      </div>
+      <FooterPage/>
+  </div>
+  
         );
     }
-}
+  
+  
+  }
 
-function mapState(state) {
-    const { loggingIn } = state.authentication;
-    return { loggingIn };
-}
-
-const actionCreators = {
-    login: userActions.login,
-    logout: userActions.logout
-};
-
-const connectedLoginPage = connect(mapState, actionCreators)(LoginPage);
-export { connectedLoginPage as LoginPage };
+export default LoginPage;

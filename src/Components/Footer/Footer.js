@@ -18,10 +18,10 @@
 
 import React from "react";
 import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
-
+import './Footer.css'
 const FooterPage = () => {
   return (
-    <MDBFooter color="blue" className="font-small pt-4 mt-4">
+    <MDBFooter color="blue" className="footer">
       <MDBContainer fluid className="text-center text-md-left">
         <MDBRow>
           <MDBCol md="2">
@@ -38,7 +38,7 @@ const FooterPage = () => {
             
           </MDBCol>
           <MDBCol md="3">
-            <h5 className="title">Email</h5>
+            <h5 className="email">Email</h5>
             <ul>
               <li className="list-unstyled">
                 <a href="#!">mithunhrm07@gmail.com</a>
@@ -48,7 +48,16 @@ const FooterPage = () => {
               </li>
             </ul>
           </MDBCol>
-        </MDBRow>
+          <MDBCol md="3">
+          <button type="button" className="btn btn-outline-primary">BOOK A MACHINERY</button>
+          </MDBCol>
+          <MDBCol md="1">
+          <a href="#" className="fb_icon"><i class="fa fa-facebook"></i></a>
+			    <a href="#" className="twi_icon"><i class="fa fa-twitter"></i></a>
+			    <a href="#" className="goo_icon"><i class="fa fa-google-plus"></i></a>
+		      
+          </MDBCol>
+         </MDBRow>
       </MDBContainer>
       <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>

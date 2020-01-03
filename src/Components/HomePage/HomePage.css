@@ -1,0 +1,14 @@
+#homepage_img{
+    height:550px;
+    width: 1300px;
+}
+.text-block {
+    position: absolute;
+    bottom: 290px;
+    right: 650px;
+    /* background-color:lightgray; */
+    color: white;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+  }
