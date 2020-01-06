@@ -4,11 +4,47 @@
 }
 .text-block {
     position: absolute;
-    bottom: 290px;
-    right: 650px;
-    /* background-color:lightgray; */
-    color: white;
+    bottom:270px;
+    right: 400px;
     padding-left: 20px;
     padding-right: 20px;
-    font-size: 20px;
+    font-size: 45px;
+   
   }
+  .card-body1{
+    height:300px;
+    width: 250px;
+  }
+  .card-title{
+      font-size: 35px;
+  }
+  .img-fluid{
+      height: 300px;
+      width: 800px;
+  }
+  #inverted_comma_icon{
+      font-size: 50px;
+      margin-left: 600px;
+  }
+ .services{
+      margin-left: 450px;
+  }
+.carousel-inner img {
+    width: 700px;
+    height:310px;
+}
+.carousel_container{
+    width: 700px;
+    height:310px;
+}
+#Machinery_button{
+    margin-left:70px;
+}
+#Service_button{
+    margin-left:80px;
+}
+.card_edit{
+    width: 244px;
+    margin-left: 95px;
+
+}
