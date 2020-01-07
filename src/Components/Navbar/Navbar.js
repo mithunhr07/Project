@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Navbar.css';
 
-import logo from '../Images/logo_image.jpg'
+import logo from '../Images/logo_image.jpeg'
 
 class Navbar extends Component {
     render() {
@@ -23,13 +23,23 @@ class Navbar extends Component {
     <li class="nav-item">
       <a class="nav-link" href="#">Home</a>
     </li>
+    <div class="dropdown">
     <li class="nav-item">
-      <a class="nav-link" href="#">Services</a>
+   <a class="nav-link" id="services">Services</a>
+  <div class="dropdown-content">
+    <a href="Planting_machines">Planting machines</a>
+    <a href="Irrigation_page">Irrigation machinery</a>
+    <a href="#">Harvesting implements</a>
+    <a href="#">Soil cultivation implements</a>
+    <a href="#">Miscellaneous agricultural equipments</a>
+  </div>
+
     </li>
-    <li class="nav-item">
+    </div>
+    <li class="nav-item" id="services">
       <a class="nav-link" href="#">About</a>
     </li>
-    <li class="nav-item">
+    <li class="nav-item" id="services">
       <a class="nav-link" href="#">Contact Us</a>
     </li>
   </ul>

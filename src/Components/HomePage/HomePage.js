@@ -3,8 +3,8 @@ import agri_img from '../Images/office.jpg';
 import './HomePage.css';
 import corn_cutter from '../Images/corn_cutter_img.jpeg';
 import mini_tractor from '../Images/mini_tractor_img.jpeg';
-import tiller from '../Images/tiller_img.jpeg';
-import card_img from '../Images/card_img.jpeg';
+import tiller from '../Images/tiller_img.jpg';
+import card_img from '../Images/homepage_img.jpg';
 import FooterPage from '../Footer/Footer';
 import Navbar from '../Navbar/Navbar';
 
@@ -17,9 +17,11 @@ class HomePage extends Component {
             <div>
                 <div>
                  <Navbar/>
-                <img id="homepage_img" src={agri_img}/> 
+                <img id="homepage_img" src={agri_img}></img>
                     <h2 class="text-block">Creating Machinery World</h2>
-                    </div><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                    <a href="/#section1" class="fa fa-arrow-down arrow"></a>
+                    </div>
+                    <section id="section1">
                     <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-3">
@@ -37,8 +39,9 @@ class HomePage extends Component {
                     <img src={card_img} class="img-fluid" alt="photo"></img>
                 
                 </div>
-                </div><br></br><br></br><br></br><br></br><br></br><br></br>
-                <div>
+                </div>
+                </section>
+                <div className="spacing">
                 <i class="fa fa-quote-right" id="inverted_comma_icon"></i>
                 <div className="services">
                 <h2>Focused on the needs of the farmer.</h2>
@@ -47,8 +50,8 @@ class HomePage extends Component {
                     allow you to find out the requirements of your land in greater detail.
                 </p>
                 </div>
-                </div><br></br><br></br><br></br><br></br><br></br><br></br>
-    <div class="row">
+                </div>
+    <div class="row spacing">
     <div class="col-md-1"></div>
     <div class="col-md-3">
     <div id="demo" class="carousel slide, carousel_container" data-ride="carousel" >
