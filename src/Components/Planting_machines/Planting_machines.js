@@ -49,7 +49,7 @@ class Planting_machines extends Component {
     <div class="card-body">
       <h4 class="card-title">Seed Drill</h4>
       <p class="card-text">Agrional Trailed Mechanical Seed Drill, pulled by tractor and
-         similar seeds together with fertilizer and depth continuously.
+         similar seeds together with fertilizer and depth continuously,thus how it works with supported machine. Click below to book now.
      </p>
       <a href="#" class="btn btn-primary">Book Now</a>
     </div>
